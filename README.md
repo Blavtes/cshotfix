@@ -3,13 +3,13 @@
 <h1><a id="cshotfix_0"></a>cshotfix</h1>
 CSharp bug fix library <br>
 <b>QQ group：673735733  （视频教程、各种资料都在qq群）</b><br>
-<b>Unity3D 充分测试的版本是5.x~2018的各个版本，首次运行的时候可能需要“注释掉部分代码才可以编译通过;想要看简易demo的请看分支版本1.4。”<b><br><br><br>
+<b>Unity3D 充分测试的版本是5.x~2019的各个版本，当前工程版本2019.2.5f1，首次运行的时候可能需要“注释掉部分代码才可以编译通过;想要看简易demo的请看分支版本1.4。”<b><br><br><br>
 <b>据有关开发群介绍，如下游戏可能有用到相关技术。<br>
         腾讯代理的《妖神记》：http://ysj.qq.com/main.html;<br>
         掌趣最近的《热血足球》<br>
         腾讯代理的 《初音未来:梦幻歌姬》 http://miku.qq.com/main.html</br>
         腾讯运用宝：《萌妖出没》：https://sj.qq.com/myapp/detail.htm?apkName=com.tencent.tmgp.mycm </br>
-        《我的勇者》：https://apps.apple.com/cn/app/%E6%88%91%E7%9A%84%E5%8B%87%E8%80%85-%E9%AD%94%E5%A5%B3%E7%AF%87/id1458703401</br>
+       《我的勇者》：https://apps.apple.com/cn/app/%E6%88%91%E7%9A%84%E5%8B%87%E8%80%85-%E9%AD%94%E5%A5%B3%E7%AF%87/id1458703401</br>
         
  **一、 简介。**<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 一个专门用于C#热更新的工具链，使用该工具链，你可以实现两点：<br>
@@ -43,6 +43,7 @@ CSharp bug fix library <br>
 &nbsp; &nbsp; &nbsp; &nbsp;2、运行效率。总体来说访问Unity的C#接口比lua方案快，计算数学方面的比lua方案要慢些，但是都是在一个数量级，比纯粹的C#慢10到100倍之间。举个例子如果一个访问GameObject的接口，C#耗时是1ms，那么CSHotFix可能就是13ms，lua就有可能是15ms；再举个例子，在CSHotFix里面计算Vector3*float,可能耗时5ms，lua只要3ms，C#只要0.1ms 。是需要注意的是，由于种种原因，无法给出比较客观的数据，请自行按照相关文档说明进行测试。提醒一句，测试请用发布版本并且关闭所有的log等等影响因素。<br>
 
 **六、更新情况。**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 2019年11月25日：更新unity2019，为了兼顾之前版本，2019需要手动设置HotFix工程“目标框架”为.net framework 4，对比之前版本是3.5。因为unity2019默认框架已经改为了4.0.
 &nbsp; &nbsp; &nbsp; &nbsp; 2018年9月20日：更新一个实际项目使用demo。<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 2018年3月13日：更新脚本引擎，支持全自动简单菜单操作，经过一定体量项目代码量亲测，表现良好。<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 2018年2月7日：适配器自动生成。<br>
@@ -58,4 +59,7 @@ CSharp bug fix library <br>
      &nbsp; &nbsp;&nbsp; &nbsp;这里给大家讲一个附加因素，为了尽可能简单的支持Unity自带的打包Player后的真机调试功能，尽量少用黑科技，也促使了将脚本引擎的调试功能去掉<br>
 2、为什么更改脚本引擎的命名空间？<br>
      &nbsp; &nbsp;&nbsp; &nbsp;MIT协议允许；便于CSHotfix统一管理代码，对原脚本引擎关于注入方面有特别的代码修改，无法一味地简单覆盖。<br>
+3、如何给中后期的项目添加热更新？<br>
+    &nbsp; &nbsp;&nbsp; &nbsp;中后期的项目，一般可能没有考虑到热更新，此时需要添加热更新，就往往只能添加修复bug的功能了。新增功能往往需要改动一些架构，时间消耗较大。<br>
+	&nbsp; &nbsp;&nbsp; &nbsp;只是添加修复bug的功能，需要做到的将“CSHotFix入门教程之工程结构了解”中的几个和CSHotFixLibray文件夹拷贝到你的工程的对应位置；拷贝HotFix热更新工程到Assets文件夹同级目录；拷贝pdb2mdb；拷贝UnityEngineLibaray；然后了解HotFixManager.cs这个类在框架工程的使用方法，自行依葫芦画瓢，进行整合。预计消耗半天到2天的时间可以整合完毕。
 
